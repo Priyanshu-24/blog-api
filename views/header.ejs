@@ -1,0 +1,21 @@
+<div class="header">
+    <h1>
+      <a href="/">My Blog</a>
+    </h1>
+  
+    <% if (user){ %>
+    <a>Hello <%= user.username %>!</a>
+    <%}%>
+  
+    <div>
+      <% if (!user){ %>
+      <a href="/login">Log in</a>
+      <a class="" href="/signup">Sign up</a>
+  
+      <%} else { %>
+      <a href="/create_msg">Create Message</a>
+      <a href="/logout">Log out</a>
+      <% } %>
+    </div>
+  </div>
+  
