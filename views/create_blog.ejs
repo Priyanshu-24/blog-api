@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>My Blog</title>
+  </head>
+  <body>
+
+    <%- include("header")%>
+
+      <div class="create-msg">
+
+        <h1>Create Blog</h1>
+
+        <form action="" method="POST">
+
+          <div>
+            <label for="title"> Title </label>
+            <br />
+            <input name="title" type="text" required />
+          </div>
+
+          <div>
+            <label for="blog"> Blog </label>
+            <br />
+            <textarea name="blog" required rows="8"></textarea>
+          </div>
+
+          <button>Post Blog</button>
+        </form>
+      </div>
+    
+    
+  </body>
+</html>
