@@ -4,37 +4,43 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <title></title>
   </head>
   <body>
     <%- include("header")%>
-    <h1><%= blog.title %></h1>
-    <div><strong>Username:</strong> <%= blog.name %></div>
-    <div><strong>Date:</strong> <%= blog.timestamp %></div>
-    <div><%= blog.body %></div>
-    <form method="POST" action="/comment_blog/<%= blog._id %>">
-      <label for="comments">Post Comment</label><br />
-      <input name="name" type="text" required placeholder="Name" /><br />
-      <input
-        name="comments"
-        type="text"
-        required
-        minlength="6"
-        placeholder="Comment"
-      />
-      <button>Post Comment</button>
-    </form>
+    <div class="single_blog">
+      <h1><%= blog.title %></h1>
+      <div><strong>Username:</strong> <%= blog.name %></div>
+      <div><strong>Date:</strong> <%= blog.timestamp %></div>
+      <div><%= blog.body %></div>
+    </div>
+    <br/><br/>
+    <div class="comment">
+      <form method="POST" action="/comment_blog/<%= blog._id %>">
+        <label for="comments">Post Comment</label><br />
+        <input name="name" type="text" required placeholder="Name" /><br />
+        <input
+          name="comments"
+          type="text"
+          required
+          minlength="6"
+          placeholder="Comment"
+        />
+        <button>Post Comment</button>
+      </form>
+      <h2>Comments:</h2>
 
-    <% blog.comment.forEach((c)=>{ %>
-    <div><%= c.name %></div>
-    <div><%= c.comments %></div>
-    <% }) %>
-
-    <% if (user){ %>
-        <form action="/delete_blog/<%= blog._id %>" method="POST">
-            <button>Delete Blog</button>
-        </form>
-    <%}%>
-
+      <% blog.comment.forEach((c)=>{ %>
+      <div class="single-comment">
+        <div><strong><%= c.name %></strong></div>
+        <div><%= c.comments %></div>
+      </div>
+      <% }) %> <% if (user){ %>
+      <form action="/delete_blog/<%= blog._id %>" method="POST">
+        <button>Delete Blog</button>
+      </form>
+      <%}%>
+    </div>
   </body>
 </html>
