@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My Blog</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Members Only</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
+
     <%- include("header")%>
+
+    <div class="content">
+     <% msgs.forEach(msg => { %> <%- include("message", {msg: msg}) %> <%
+      }) %>
+    </div>
 
   </body>
 </html>

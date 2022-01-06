@@ -23,3 +23,35 @@ exports.blog_post = async (req, res, next) => {
     res.redirect("/");
     
 }
+
+exports.show_blog = async (req, res, next) => {
+  const blogs = await Blog.find({}).sort({ date: -1 });
+  res.render("index", { user: req.user, msgs: blogs });
+};
+
+exports.single_blog = async (req, res, next) => {
+  const { id } = req.params;
+  const blog = await Blog.findById(id);
+  res.render("single_blog", { user: req.user, blog: blog });
+};
+
+exports.post_comment = async (req, res, next) => {
+  const { name, comments } = req.body;
+  const { id } = req.params;
+
+  const blog = await Blog.findById(id);
+  const { comment } = blog;
+
+  comment.push({ name, comments });
+
+  const result = await Blog.findByIdAndUpdate(id, {comment});
+
+  res.redirect(`/${id}`);
+};
+
+exports.delete_blog = async (req, res, next) => {
+  const { id } = req.params;
+  const response = await Blog.findByIdAndDelete(id);
+
+  res.redirect("/");
+};
